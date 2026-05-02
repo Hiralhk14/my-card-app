@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import type { ButtonProps } from "@/types/type";
 
-const Button = ({ children, variant = "primary", ...props }: ButtonProps) => {
+const Button = ({ children, variant = "primary", className, ...props }: ButtonProps) => {
   const buttonStyle =
     variant === "secondary"
       ? "bg-secondary-light text-foreground"
@@ -12,7 +12,7 @@ const Button = ({ children, variant = "primary", ...props }: ButtonProps) => {
   return (
     <button
       type="button"
-      className={clsx("px-4 py-2", buttonStyle)}
+      className={clsx("px-4 py-2", buttonStyle, className)}
       {...props}
     >
       {children}

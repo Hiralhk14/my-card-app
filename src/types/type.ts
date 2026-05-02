@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ElementType } from "react";
+import type { ButtonHTMLAttributes, ElementType, InputHTMLAttributes, ReactNode } from "react";
 
 export type ButtonVariant = "primary" | "secondary";
 
@@ -32,5 +32,11 @@ export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
+
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string;
+  error?: string;
+  rightIcon?: ReactNode;
+};

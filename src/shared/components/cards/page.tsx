@@ -33,6 +33,7 @@ const CardsPage: React.FC = () => {
             </div>
 
             <Button
+              variant="primary"
               className="flex items-center gap-2"
               onClick={() => setIsModalOpen(true)}
             >
