@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Home, CreditCard, ArrowLeftRight, Settings, LogOut } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Home, CreditCard, ArrowLeftRight, Settings, LogOut, ArrowRight } from "lucide-react";
 
 import type { NavItem } from "@/types/type";
 
@@ -14,6 +15,8 @@ const navItems: NavItem[] = [
 ];
 
 const Sidebar: React.FC = () => {
+  const pathname = usePathname();
+
   return (
     <aside className="w-80 h-screen bg-primary flex flex-col px-8 py-10 font-sans">
       <div className="mb-14">
@@ -38,14 +41,25 @@ const Sidebar: React.FC = () => {
       <nav className="flex-1">
         {navItems?.map((item) => {
           const Icon = item?.icon;
+          const isActive = pathname === item?.href;
+
           return (
             <div key={item?.href} className="border-b border-white/20">
               <Link
                 href={item?.href}
-                className="flex items-center gap-3 py-4 text-white text-md font-medium hover:text-secondary"
+                className={`flex items-center py-4 text-md font-medium 
+                          ${isActive ? "text-accent" : "text-white"}`}
               >
-                <Icon size={18} />
-                <span>{item?.label}</span>
+                <div className="flex items-center gap-3">
+                  <Icon size={18} />
+                  <span>{item?.label}</span>
+                </div>
+
+                {isActive && (
+                  <span className="ml-auto text-accent">
+                    <ArrowRight size={18} />
+                  </span>
+                )}
               </Link>
             </div>
           );
