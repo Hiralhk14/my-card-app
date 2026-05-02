@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ElementType, InputHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ElementType, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
 
 export type ButtonVariant = "primary" | "secondary";
 
@@ -39,4 +39,16 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   error?: string;
   rightIcon?: ReactNode;
+};
+
+export type SelectOption = {
+  value: string;
+  label: string;
+};
+
+export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
+  label?: string;
+  error?: string;
+  options: SelectOption[];
+  placeholder?: string;
 };

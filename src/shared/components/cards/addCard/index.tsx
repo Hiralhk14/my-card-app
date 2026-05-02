@@ -6,6 +6,7 @@ import { AddCardModalProps } from "@/types/type";
 import Modal from "@/shared/ui/modal/index";
 import Button from "@/shared/ui/button";
 import Input from "@/shared/ui/input";
+import Select from "@/shared/ui/select";
 
 const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
   return (
@@ -22,6 +23,16 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           id="bank-name"
           label="Bank Name:"
           placeholder="i.e. HDFC BANK"
+        />
+
+        <Select
+          id="card-type"
+          label="Card Type:"
+          placeholder="Select Card Type"
+          options={[
+            { value: "Credit", label: "Credit" },
+            { value: "Debit", label: "Debit" },
+          ]}
         />
 
         <Input
