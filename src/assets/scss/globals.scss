@@ -45,6 +45,10 @@
     background-color: #f0f4f8;
   }
 
+  .border-background {
+    border-color: #f0f4f8;
+  }
+
   .bg-danger {
     background-color: #ef4444;
   }
@@ -53,6 +57,13 @@
     background-color: #22c55e;
   }
 
+  .text-success {
+    color: #22c55e;
+  }
+
+  .text-danger {
+    color: #ef4444;
+  }
   .text-foreground {
     color: #171717;
   }
@@ -60,9 +71,24 @@
   .bg-accent {
     background-color: #12b5ea;
   }
+  .border-accent {
+    border-color: #12b5ea;
+  }
 
   .text-accent {
     color: #12b5ea;
+  }
+
+  .text-primary {
+    color: #1b3a6b;
+  }
+
+  .text-secondary {
+    color: #3b82f6;
+  }
+
+  .border-secondary {
+    border-color: #3b82f6;
   }
 
 }
