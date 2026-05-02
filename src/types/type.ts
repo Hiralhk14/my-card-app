@@ -1,6 +1,10 @@
 import type { ButtonHTMLAttributes, ElementType } from "react";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonVariant = "primary" | "secondary";
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariant;
+};
 
 export type HeaderProps = {
   title?: string;
@@ -18,3 +22,15 @@ export const routeNameMap: Record<string, string> = {
   "/transactions": "Transactions",
   "/settings": "Settings",
 };
+
+export type AddCardModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}

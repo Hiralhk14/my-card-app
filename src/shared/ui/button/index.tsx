@@ -1,15 +1,18 @@
 import React from "react";
 import clsx from "clsx";
 
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonProps } from "@/types/type";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+const Button = ({ children, variant = "primary", ...props }: ButtonProps) => {
+  const buttonStyle =
+    variant === "secondary"
+      ? "bg-secondary-light text-foreground"
+      : "bg-primary text-white";
 
-const Button = ({ children, className, ...props }: ButtonProps) => {
   return (
     <button
       type="button"
-      className={clsx("bg-primary text-white px-4 py-2", className)}
+      className={clsx("px-4 py-2", buttonStyle)}
       {...props}
     >
       {children}

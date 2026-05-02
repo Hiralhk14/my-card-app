@@ -1,11 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowLeftRight, ChevronRight, LayoutGrid, Plus } from "lucide-react";
 
 import Button from "@/shared/ui/button/index";
+import AddCardModal from "./addCard";
 
 const CardsPage: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col flex-1">
       <div className="px-4 sm:px-6 py-4">
@@ -29,7 +32,10 @@ const CardsPage: React.FC = () => {
               </button>
             </div>
 
-            <Button className="flex items-center gap-2">
+            <Button
+              className="flex items-center gap-2"
+              onClick={() => setIsModalOpen(true)}
+            >
               <Plus size={16} />
               Add Card
             </Button>
@@ -77,7 +83,9 @@ const CardsPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <AddCardModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
+
   );
 };
 
