@@ -20,7 +20,7 @@ const CardsPage: React.FC = () => {
         <div className="bg-white border border-gray-200 shadow-sm">
           <div className="px-5 pt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex gap-6">
-              <button className="pb-2 text-sm font-medium border-b-2 border-primary text-primary">
+              <button className="pb-2 text-sm font-medium border-b-2 border-primary text-accent">
                 Saved Cards
               </button>
 
