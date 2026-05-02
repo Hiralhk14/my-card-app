@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import "@/assets/scss/globals.scss";
 import Sidebar from "@/shared/components/sidebar";
+import Header from "@/shared/components/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <div className="flex h-screen overflow-hidden">
           <Sidebar />
           <main className="flex-1 min-w-0 overflow-y-auto">
+             <Header title="Home" />
             <div className="min-h-full flex flex-col">
               <div className="flex-1">{children}</div>
             </div>
