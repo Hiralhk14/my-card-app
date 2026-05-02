@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import "@/assets/scss/globals.scss";
 import Sidebar from "@/shared/components/sidebar";
 import Header from "@/shared/components/headers";
+import Footer from "@/shared/components/footer";
 
 import ReduxProvider from "./providers";
-import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
               <Header />
               <div className="min-h-full flex flex-col">
                 <div className="flex-1">{children}</div>
+                <Footer/>
               </div>
             </main>
           </div>
