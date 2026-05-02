@@ -7,6 +7,7 @@ import Modal from "@/shared/ui/modal/index";
 import Button from "@/shared/ui/button";
 import Input from "@/shared/ui/input";
 import Select from "@/shared/ui/select";
+import Checkbox from "@/shared/ui/checkbox";
 
 const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
   return (
@@ -58,6 +59,14 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
             maxLength={4}
           />
         </div>
+        <Checkbox
+          id="set-default"
+          label="Set this card as Default"
+        />
+        <Checkbox
+          id="add-gpay"
+          label="Add this card to GPay?"
+        />
 
         <div className="flex justify-end gap-3 pt-4 border-t">
           <Button variant="secondary" onClick={onClose}>

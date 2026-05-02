@@ -1,7 +1,8 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import clsx from "clsx";
 
 import { InputProps } from "@/types/type";
+import ErrorMessage from "../error";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, rightIcon, className, id, ...props }, ref) => {
@@ -29,11 +30,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             </span>
           )}
         </div>
-        {error && (
-          <p className="mt-1 text-xs text-danger">
-            {error}
-          </p>
-        )}
+        <ErrorMessage error={error} />
+
       </div>
     );
   }

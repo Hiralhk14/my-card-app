@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import clsx from "clsx";
 
 import type { SelectProps } from "@/types/type";
+import ErrorMessage from "../error";
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ label, error, options, placeholder, className, id, ...props }, ref) => {
@@ -33,11 +34,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ))}
         </select>
 
-        {error && (
-          <p className="mt-1 text-xs text-danger">
-            {error}
-          </p>
-        )}
+        <ErrorMessage error={error} />
+
       </div>
     );
   }

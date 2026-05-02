@@ -52,3 +52,13 @@ export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   options: SelectOption[];
   placeholder?: string;
 };
+
+export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+  error?: string;
+};
+
+export type ErrorMessageProps = {
+  error?: string;
+  className?: string;
+};
