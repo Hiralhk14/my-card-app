@@ -101,3 +101,9 @@ export const formatValidTill = (value: string): string => {
 export const generateId = (): string => {
   return `card_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 };
+
+export const maskCardNumber = (cardNumber: string): string => {
+  const cleaned = cardNumber.replace(/\s/g, "");
+  const last4 = cleaned.slice(-4);
+  return `•••• •••• •••• ${last4}`;
+};

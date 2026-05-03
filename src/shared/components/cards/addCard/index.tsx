@@ -78,6 +78,9 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           cvv: form?.cvv,
           isDefault: form?.isDefault,
           addToGPay: form?.addToGPay,
+          isLocked: false,
+          isArchived: false,
+          showFullNumber: false,
         })
       );
       toast.success("Card added successfully!");

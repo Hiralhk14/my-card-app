@@ -6,9 +6,16 @@ import { ArrowLeftRight, ChevronRight, LayoutGrid, Plus } from "lucide-react";
 import Button from "@/shared/ui/button/index";
 import AddCardModal from "./addCard";
 import TransactionsList from "./transactions";
+import CardCarousel from "./cardCarousel";
+import { useReduxSelector } from "@/store/reduxHook";
+import { CardType } from "@/types/card.type";
 
 const CardsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const allCards = useReduxSelector((s) => s?.cards?.cards);
+  const creditCards = allCards?.filter((c) => c?.cardType === "Credit");
+  const debitCards = allCards?.filter((c) => c?.cardType === "Debit");
 
   return (
     <div className="flex flex-col flex-1">
@@ -52,29 +59,25 @@ const CardsPage: React.FC = () => {
                   Card Details
                 </div>
               </div>
-              
-              <TransactionsList/> 
+
+              <TransactionsList />
             </div>
 
             <div className="flex-1 flex flex-col gap-8">
               <section>
-                <h2 className="text-accent text-lg font-bold mb-4 underline">
-                  Credit Cards
-                </h2>
-
-                <div className="bg-background rounded-lg min-h-[200px] flex items-center justify-center">
-                  <p className="text-sm text-gray-500">Credit Card </p>
-                </div>
+                <h2 className="text-accent text-lg font-bold mb-4 underline">Credit Cards</h2>
+                <CardCarousel
+                  cards={creditCards}
+                  cardType={"Credit" as CardType}
+                />
               </section>
 
               <section>
-                <h2 className="text-accent text-lg font-bold mb-4 underline">
-                  Debit Cards
-                </h2>
-
-                <div className="bg-background rounded-lg min-h-[200px] flex items-center justify-center">
-                  <p className="text-sm text-gray-500">Debit Card </p>
-                </div>
+                <h2 className="text-accent text-lg font-bold mb-4 underline">Debit Cards</h2>
+                <CardCarousel
+                  cards={debitCards}
+                  cardType={"Debit" as CardType}
+                />
               </section>
             </div>
           </div>

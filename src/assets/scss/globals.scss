@@ -40,6 +40,24 @@
   .bg-sidebar {
     background-color: #1b3a6b;
   }
+  .bg-card-dark {
+    background-color: #1b3a6b;
+  }
+  .bg-card-locked {
+    background-color: #6b8bb5;
+  }
+  .bg-card-disabled {
+    background-color: #6b8bb5;
+  }
+  .bg-action-primary {
+    background-color: #0f2447;
+  }
+  .bg-action-default {
+    background-color: #0f2447;
+  }
+  .bg-action-gpay {
+    background-color: #7c3aed;
+  }
 
   .bg-background {
     background-color: #f0f4f8;
@@ -89,6 +107,10 @@
 
   .border-secondary {
     border-color: #3b82f6;
+  }
+
+  .bg-footer {
+    background-color: #7FA6B8;
   }
 
 }
