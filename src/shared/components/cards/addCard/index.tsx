@@ -150,9 +150,9 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           label="CVV:"
           placeholder="•••"
           inputMode="numeric"
-          maxLength={4}
+          maxLength={3}
             value={form?.cvv}
-            onChange={(e) => handleChange("cvv", e?.target?.value?.replace(/\D/g, "")?.slice(0, 4))}
+            onChange={(e) => handleChange("cvv", e?.target?.value?.replace(/\D/g, "")?.slice(0, 3))}
             error={errors?.cvv}
           type={showCVV ? "text" : "password"}
           rightIcon={

@@ -57,8 +57,8 @@ export const validateCardForm = (formData: AddCardFormData, existingCards: Card[
   }
   if (!formData.cvv.trim()) {
     errors.cvv = "CVV is required";
-  } else if (!/^\d{3,4}$/.test(formData.cvv)) {
-    errors.cvv = "CVV must be 3 or 4 digits"; // CVV validation
+  } else if (!/^\d{3}$/.test(formData.cvv)) {
+    errors.cvv = "CVV must be 3 digits"; // CVV validation
   }
   // default card validation
   if (formData.isDefault && formData.cardType) {
