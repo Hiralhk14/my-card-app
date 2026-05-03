@@ -4,7 +4,7 @@ import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard } from "@/store/slices/cardSlice";
+import { toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard, setActiveCardIndex } from "@/store/slices/cardSlice";
 import { CardCarouselProps } from "@/types/card.type";
 import { useReduxDispatch, useReduxSelector } from "@/store/reduxHook";
 
@@ -32,6 +32,10 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
   const hasDefaultForType = cards?.some((c) => c?.isDefault);
   const isDefaultDisabled = hasDefaultForType && !card?.isDefault;
 
+  const handleSlideChange = (newIndex: number) => {
+    dispatch(setActiveCardIndex({ cardType, index: newIndex }));
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <div className="flex justify-center">
@@ -49,11 +53,23 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-4">
-        <div className="flex-1">
-          <CardView
-            card={card}
-            showNumber={showNumber}
-          />
+        <div className="flex-1 relative overflow-hidden">
+          <div 
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {cards?.map((currentCard, cardIndex) => (
+              <div 
+                key={currentCard?.id}
+                className="w-full flex-shrink-0"
+              >
+                <CardView
+                  card={currentCard}
+                  showNumber={showNumber && cardIndex === index}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="w-full lg:w-48">
@@ -83,6 +99,24 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
           />
         </div>
       </div>
+
+      {cards.length > 1 && (
+        <div className="flex justify-center gap-1.5 mt-4">
+          {cards.map((_, dotIndex) => (
+            <button
+              key={dotIndex}
+              type="button"
+              onClick={() => handleSlideChange(dotIndex)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ease-in-out ${
+                index === dotIndex
+                  ? "bg-accent w-6"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to card ${dotIndex + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

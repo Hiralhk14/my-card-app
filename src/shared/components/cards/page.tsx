@@ -52,7 +52,7 @@ const CardsPage: React.FC = () => {
 
           <div className="border-t border-gray-100 mt-4" />
           <div className="flex flex-col lg:flex-row gap-6 px-5 py-6">
-            <div className="w-full lg:w-100 shrink-0">
+            <div className="w-full lg:w-80 shrink-0">
               <div className="bg-background p-4 mb-4 rounded-card">
                 <div className="flex items-center gap-2 text-accent text-sm">
                   <LayoutGrid size={16} />
