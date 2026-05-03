@@ -3,11 +3,9 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
 import "@/assets/scss/globals.scss";
-import Sidebar from "@/shared/components/sidebar";
-import Header from "@/shared/components/headers";
-import Footer from "@/shared/components/footer";
 
 import ReduxProvider from "./providers";
+import MainLayout from "@/shared/components/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,16 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} overflow-hidden`}>
         <ReduxProvider>
-          <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <main className="flex-1 min-w-0 overflow-y-auto">
-              <Header />
-              <div className="min-h-full flex flex-col">
-                <div className="flex-1">{children}</div>
-                <Footer/>
-              </div>
-            </main>
-          </div>
+          <MainLayout>
+            {children}
+          </MainLayout>
           <Toaster
             position="top-right"
             toastOptions={{
