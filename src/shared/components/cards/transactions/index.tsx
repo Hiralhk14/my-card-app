@@ -37,9 +37,7 @@ const TransactionsList = () => {
             <span
               className={clsx(
                 "text-sm",
-                transaction?.amount < 0
-                  ? "text-danger"
-                  : "text-success"
+                transaction.amount < 0 ? "text-danger" : "text-success"
               )}
             >
               {transaction?.amount < 0 ? "-" : "+"}$

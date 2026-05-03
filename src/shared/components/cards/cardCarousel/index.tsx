@@ -1,32 +1,24 @@
 "use client";
+
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-import {
-  toggleDefaultCard,
-  toggleGPay,
-  toggleShowCardNumber,
-  lockCard,
-  archiveCard
-} from "@/store/slices/cardSlice";
+import {toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard } from "@/store/slices/cardSlice";
 import { CardCarouselProps } from "@/types/card.type";
 import { useReduxDispatch, useReduxSelector } from "@/store/reduxHook";
+
 import CardView from "../cardView";
 import CardActions from "../cardActions";
 
-
 const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
   const dispatch = useReduxDispatch();
-  const activeIndex = useReduxSelector(
-    (s) => s?.cards?.activeCardIndex[cardType]
-  );
-  const showNumber = useReduxSelector(
-    (s) => s?.cards?.showCardNumber[cardType]
-  );
+  const activeIndex = useReduxSelector((s) => s?.cards?.activeCardIndex[cardType]);
+  const showNumber = useReduxSelector((s) => s?.cards?.showCardNumber[cardType]);
 
   const hasCards = cards?.length > 0;
   const index = hasCards ? Math?.min(activeIndex, cards?.length - 1) : 0;
 
+  // If there are no cards, show a placeholder message 
   if (!hasCards) {
     return (
       <div className="flex items-center justify-center h-40 rounded-card bg-gray-100 text-gray-400 text-sm">
@@ -72,13 +64,13 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
               dispatch(lockCard(card?.id));
             }}
             onToggleArchive={() => {
-              dispatch(archiveCard(card.id));
+              dispatch(archiveCard(card?.id));
             }}
             onToggleDefault={() => {
               dispatch(toggleDefaultCard({ id: card?.id, cardType }));
             }}
             onToggleGPay={() => {
-              dispatch(toggleGPay(card.id));
+              dispatch(toggleGPay(card?.id));
             }}
           />
         </div>

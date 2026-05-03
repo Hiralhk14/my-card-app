@@ -35,7 +35,6 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
   const [form, setForm] = useState<AddCardFormData>(INITIAL_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
   const [showCVV, setShowCVV] = useState(false);
-  const [submit, setSubmit] = useState(false);
 
   const handleChange = useCallback(
     (field: keyof AddCardFormData, value: string | boolean) => {
@@ -65,7 +64,6 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
       toast.error("Please fix the errors in the form.");
       return;
     }
-    setSubmit(true);
     try {
       dispatch(
         addCard({
@@ -80,15 +78,12 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           addToGPay: form?.addToGPay,
           isLocked: false,
           isArchived: false,
-          showFullNumber: false,
         })
       );
       toast.success("Card added successfully!");
       handleClose();
     } catch {
       toast.error("Failed to add card. Please try again.");
-    } finally {
-      setSubmit(false);
     }
   };
 

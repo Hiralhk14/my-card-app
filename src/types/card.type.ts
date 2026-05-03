@@ -14,7 +14,6 @@ export interface Card {
   addToGPay: boolean;
   isLocked: boolean;
   isArchived: boolean;
-  showFullNumber: boolean;
 }
 
 export interface CardState {

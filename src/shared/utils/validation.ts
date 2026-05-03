@@ -3,25 +3,24 @@ import { AddCardFormData, Card, FormErrors } from "@/types/card.type";
 // card number validation
 export const isValidCardNumber = (cardNumber: string) => {
   const cleanNumber = cardNumber.replace(/\s/g, "");
-  if (!/^\d{16}$/.test(cleanNumber)) {
-    return false;
-  }
-  let total = 0;
+  if (!/^\d{16}$/.test(cleanNumber)) return false;
+
+  let sum = 0;
   let shouldDouble = false;
+
   for (let i = cleanNumber.length - 1; i >= 0; i--) {
-    let digit = Number(cleanNumber[i]);
+    let digit = parseInt(cleanNumber[i], 10);
 
     if (shouldDouble) {
-      digit = digit * 2;
-
-      if (digit > 9) {
-        digit = digit - 9;
-      }
+      digit *= 2;
+      if (digit > 9) digit -= 9;
     }
-    total += digit;
+
+    sum += digit;
     shouldDouble = !shouldDouble;
   }
-  return total % 10 === 0;
+
+  return sum % 10 === 0;
 };
 
 // valid till date validation
@@ -32,9 +31,10 @@ export const isValidFutureDate = (validTill: string) => {
     return false;
   }
   const [month, year] = validTill.split("/").map(Number);
+  const expiryDate = new Date(year, month - 1);
+  
   const today = new Date();
   const currentDate = new Date(today.getFullYear(), today.getMonth());
-  const expiryDate = new Date(year, month - 1);
 
   return expiryDate >= currentDate;
 };
@@ -83,10 +83,12 @@ export const validateCardForm = (
   return errors;
 };
 
-// function to format card number with space
 export const formatCardNumber = (value: string): string => {
-  const cleaned = value.replace(/\D/g, "").slice(0, 16);
-  return cleaned.replace(/(.{4})/g, "$1 ").trim();
+  return value
+    .replace(/\D/g, "")
+    .slice(0, 16)
+    .replace(/(.{4})/g, "$1 ")
+    .trim();
 };
 
 // function to format valid till input
@@ -103,7 +105,6 @@ export const generateId = (): string => {
 };
 
 export const maskCardNumber = (cardNumber: string): string => {
-  const cleaned = cardNumber.replace(/\s/g, "");
-  const last4 = cleaned.slice(-4);
+  const last4 = cardNumber.replace(/\s/g, "").slice(-4);
   return `•••• •••• •••• ${last4}`;
 };
