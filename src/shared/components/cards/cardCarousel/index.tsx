@@ -3,7 +3,7 @@
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-import {toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard } from "@/store/slices/cardSlice";
+import { toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard } from "@/store/slices/cardSlice";
 import { CardCarouselProps } from "@/types/card.type";
 import { useReduxDispatch, useReduxSelector } from "@/store/reduxHook";
 

@@ -1,23 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { Card, CardState, CardType } from "@/types/card.type";
-
-const STORAGE_KEY = "my_card_management";
-
-const loadFromStorage = (): Card[] => {
-  if (typeof window === "undefined") return [];
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveToStorage = (cards: Card[]) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
-};
+import { clearOtherCardFlags, loadCardsFromStorage, saveCardsToStorage } from "./cardUtils";
 
 const initialState: CardState = {
   cards: [],
@@ -30,12 +14,13 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     initCards(state) {
-      state.cards = loadFromStorage();
+      state.cards = loadCardsFromStorage();
     },
 
     addCard(state, action: PayloadAction<Card>) {
       state.cards.push(action.payload);
-      saveToStorage(state.cards);
+      saveCardsToStorage(state.cards);
+      
       const typeCards = state.cards.filter(
         (c) => c.cardType === action.payload.cardType
       );
@@ -45,28 +30,22 @@ const cardSlice = createSlice({
     lockCard(state, action: PayloadAction<string>) {
       const card = state.cards.find((c) => c.id === action.payload);
       if (card) {
-        const newVal = !card.isLocked;
-        card.isLocked = newVal;
-        if (newVal) {
-          card.isArchived = false;
-          card.isDefault = false;
-          card.addToGPay = false;
+        card.isLocked = !card.isLocked;
+        if (card.isLocked) {
+          clearOtherCardFlags(card, "isLocked");
         }
-        saveToStorage(state.cards);
+        saveCardsToStorage(state.cards);
       }
     },
 
     archiveCard(state, action: PayloadAction<string>) {
       const card = state.cards.find((c) => c.id === action.payload);
       if (card) {
-        const newVal = !card.isArchived;
-        card.isArchived = newVal;
-        if (newVal) {
-          card.isLocked = false;
-          card.isDefault = false;
-          card.addToGPay = false;
+        card.isArchived = !card.isArchived;
+        if (card.isArchived) {
+          clearOtherCardFlags(card, "isArchived");
         }
-        saveToStorage(state.cards);
+        saveCardsToStorage(state.cards);
       }
     },
 
@@ -79,7 +58,7 @@ const cardSlice = createSlice({
           c.isDefault = c.id === action.payload.id;
         }
       });
-      saveToStorage(state.cards);
+      saveCardsToStorage(state.cards);
     },
 
     toggleDefaultCard(
@@ -92,32 +71,28 @@ const cardSlice = createSlice({
 
       state.cards.forEach((c) => {
         if (c.cardType !== action.payload.cardType) return;
+        
         if (c.id === action.payload.id) {
           c.isDefault = !isAlreadyDefault;
-          if (!isAlreadyDefault) {
-            c.isLocked = false;
-            c.isArchived = false;
-            c.addToGPay = false;
+          if (c.isDefault) {
+            clearOtherCardFlags(c, "isDefault");
           }
         } else {
           c.isDefault = false;
         }
       });
 
-      saveToStorage(state.cards);
+      saveCardsToStorage(state.cards);
     },
 
     toggleGPay(state, action: PayloadAction<string>) {
       const card = state.cards.find((c) => c.id === action.payload);
       if (card) {
-        const newVal = !card.addToGPay;
-        card.addToGPay = newVal;
-        if (newVal) {
-          card.isLocked = false;
-          card.isArchived = false;
-          card.isDefault = false;
+        card.addToGPay = !card.addToGPay;
+        if (card.addToGPay) {
+          clearOtherCardFlags(card, "addToGPay");
         }
-        saveToStorage(state.cards);
+        saveCardsToStorage(state.cards);
       }
     },
 
