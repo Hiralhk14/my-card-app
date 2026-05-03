@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
+import toast from "react-hot-toast";
 
 import { toggleDefaultCard, toggleGPay, toggleShowCardNumber, lockCard, archiveCard } from "@/store/slices/cardSlice";
 import { CardCarouselProps } from "@/types/card.type";
@@ -37,7 +38,10 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
         <button
           type="button"
           className="flex justify-center items-center bg-secondary-light text-sm"
-          onClick={() => dispatch(toggleShowCardNumber(cardType))}
+          onClick={() => {
+              dispatch(toggleShowCardNumber(cardType));
+              toast.success(showNumber ? "Card number hidden" : "Card number shown");
+            }}
         >
           {showNumber ? <EyeOff size={18} /> : <Eye size={18} />}
           {showNumber ? "Hide Card Number" : "Show Card Number"}
@@ -62,15 +66,19 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
             isDefaultDisabled={isDefaultDisabled}
             onToggleLock={() => {
               dispatch(lockCard(card?.id));
+              toast.success(card?.isLocked ? "Card unlocked successfully" : "Card locked successfully");
             }}
             onToggleArchive={() => {
               dispatch(archiveCard(card?.id));
+              toast.success(card?.isArchived ? "Card unarchived successfully" : "Card archived successfully");
             }}
             onToggleDefault={() => {
               dispatch(toggleDefaultCard({ id: card?.id, cardType }));
+              toast.success(card?.isDefault ? "Card removed as default" : "Card set as default successfully");
             }}
             onToggleGPay={() => {
               dispatch(toggleGPay(card?.id));
+              toast.success(card?.addToGPay ? "Card removed from GPay" : "Card added to GPay successfully");
             }}
           />
         </div>
