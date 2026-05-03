@@ -5,12 +5,13 @@ import { InputProps } from "@/types/type";
 import ErrorMessage from "../error";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, rightIcon, className, id, ...props }, ref) => {
+  ({ label, error, rightIcon, className, id, required, ...props }, ref) => {
     return (
       <div className="w-full">
         {label && (
           <label htmlFor={id} className="block mb-1 text-sm text-gray-700">
             {label}
+            {required && <span className="text-red-500">*</span>}
           </label>
         )}
         <div className="relative">

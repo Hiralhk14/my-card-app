@@ -5,12 +5,13 @@ import type { SelectProps } from "@/types/type";
 import ErrorMessage from "../error";
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, options, placeholder, className, id, ...props }, ref) => {
+  ({ label, error, options, placeholder, className, id, required, ...props }, ref) => {
     return (
       <div className="w-full">
         {label && (
           <label htmlFor={id} className="block mb-1 text-sm text-gray-700">
             {label}
+            {required && <span className="text-red-500">*</span>}
           </label>
         )}
         <select id={id} ref={ref}

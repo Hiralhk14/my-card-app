@@ -94,26 +94,28 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
       <div className="flex flex-col gap-4">
         <Input
           id="card-name"
-          label="Name:"
+          label="Name"
           placeholder="i.e. James Carlon"
           maxLength={35}
           value={form?.name}
           onChange={(e) => handleChange("name", e?.target?.value)}
           error={errors?.name}
+          required
         />
 
         <Input
           id="bank-name"
-          label="Bank Name:"
+          label="Bank Name"
           placeholder="i.e. HDFC BANK"
           value={form?.bankName}
           onChange={(e) => handleChange("bankName", e?.target?.value)}
           error={errors?.bankName}
+          required
         />
 
         <Select
           id="card-type"
-          label="Card Type:"
+          label="Card Type"
           placeholder="Select Card Type"
           options={[
             { value: "Credit", label: "Credit" },
@@ -122,32 +124,35 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           value={form?.cardType}
           onChange={(e) => handleChange("cardType", e?.target?.value)}
           error={errors?.cardType}
+          required
         />
 
         <Input
           id="card-number"
-          label="Card Number:"
+          label="Card Number"
           placeholder="i.e. 7754 1542 6584 4875"
           inputMode="numeric"
           maxLength={19}
           value={form?.cardNumber}
           onChange={handleCardNumberChange}
           error={errors?.cardNumber}
+          required
         />
         <div className="flex gap-3">
           <Input
             id="valid-till"
-            label="Valid Till:"
+            label="Valid Till"
             placeholder="MM/YYYY"
             inputMode="numeric"
             maxLength={7}
             value={form?.validTill}
             onChange={handleValidTillChange}
             error={errors?.validTill}
+            required
           />
         <Input
           id="cvv"
-          label="CVV:"
+          label="CVV"
           placeholder="•••"
           inputMode="numeric"
           maxLength={3}
@@ -155,6 +160,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
             onChange={(e) => handleChange("cvv", e?.target?.value?.replace(/\D/g, "")?.slice(0, 3))}
             error={errors?.cvv}
           type={showCVV ? "text" : "password"}
+          required
           rightIcon={
             <button
               type="button"
