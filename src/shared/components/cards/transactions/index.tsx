@@ -16,7 +16,7 @@ const TransactionsList = () => {
         </button>
       </div>
 
-      <div className="border-l border-r border-b border-background">
+      <div className="border-l border-r border-b border-secondary-light">
         {TRANSACTIONS?.map((transaction) => (
           <div
             key={transaction?.id}
