@@ -60,10 +60,9 @@ const CardActions = ({
               : false
           }
           className={clsx(
-            "flex flex-col items-center gap-2",
+            "flex flex-col items-center gap-2 cursor-pointer",
             action?.label === "Set As Default" &&
-            isDefaultDisabled &&
-            "opacity-50"
+            isDefaultDisabled && "opacity-50"
           )}
         >
           <div

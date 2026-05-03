@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input id={id}
             ref={ref}
             className={clsx(
-              "w-full border px-3 py-2 text-sm",
+              "w-full border px-3 py-2 text-sm bg-white",
               error ? "border-danger" : "border-gray-300",
               rightIcon && "pr-10",
               className

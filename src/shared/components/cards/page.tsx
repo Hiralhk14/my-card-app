@@ -19,7 +19,7 @@ const CardsPage: React.FC = () => {
 
   return (
     <div className="flex flex-col flex-1">
-      <div className="px-4 sm:px-6 py-4">
+      <div className="container p-4">
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <span>Home</span>
           <ChevronRight size={14} />
@@ -27,8 +27,8 @@ const CardsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 pb-8 flex-1">
-        <div className="bg-white border border-gray-200 shadow-sm">
+      <div className="container pb-8 flex-1">
+        <div className="bg-white border border-gray-200 shadow-card">
           <div className="px-5 pt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex gap-6">
               <button className="pb-2 text-sm font-medium border-b-2 border-primary text-accent">
@@ -42,7 +42,7 @@ const CardsPage: React.FC = () => {
 
             <Button
               variant="primary"
-              className="flex items-center gap-2"
+              className="btn-responsive flex items-center gap-2 cursor-pointer"
               onClick={() => setIsModalOpen(true)}
             >
               <Plus size={16} />
@@ -51,10 +51,10 @@ const CardsPage: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-100 mt-4" />
-          <div className="flex flex-col xl:flex-row gap-6 px-5 py-6">
-            <div className="w-full xl:w-80 shrink-0">
-              <div className="bg-background p-4 mb-4">
-                <div className="flex items-center gap-2 text-accent font-semibold text-sm">
+          <div className="flex flex-col lg:flex-row gap-6 px-5 py-6">
+            <div className="w-full lg:w-100 shrink-0">
+              <div className="bg-background p-4 mb-4 rounded-card">
+                <div className="flex items-center gap-2 text-accent text-sm">
                   <LayoutGrid size={16} />
                   Card Details
                 </div>

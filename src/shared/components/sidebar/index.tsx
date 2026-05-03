@@ -18,7 +18,7 @@ const Sidebar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-80 h-screen bg-primary flex flex-col px-8 py-10 font-sans">
+    <aside className="sidebar h-screen bg-sidebar flex flex-col px-8 py-10 font-sans">
       <div className="mb-14">
         <div className="flex items-center gap-3 mb-5">
           <div className="w-14 h-14 bg-secondary flex items-center justify-center">
@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
           </div>
 
           <div>
-            <h1 className="text-white text-2xl font-semibold leading-tight">
+            <h1 className="text-white text-xl font-semibold leading-tight">
               GIRIRAJ <span className="font-light">DIGITAL</span>
             </h1>
           </div>
@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
             <div key={item?.href} className="border-b border-white/20">
               <Link
                 href={item?.href}
-                className={`flex items-center py-4 text-md font-medium 
+                className={`flex items-center py-4 text-sm font-medium 
                           ${isActive ? "text-accent" : "text-white"}`}
               >
                 <div className="flex items-center gap-3">

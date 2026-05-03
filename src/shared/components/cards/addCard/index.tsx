@@ -158,7 +158,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           rightIcon={
             <button
               type="button"
-                onClick={() => setShowCVV((i) => !i)}
+                onClick={() => setShowCVV(!showCVV)}
               className="text-gray-400 hover:text-gray-600"
             >
               {showCVV ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -181,13 +181,8 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
         />
 
         <div className="flex justify-end gap-3 pt-4 border-t">
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <Button variant="secondary" onClick={handleClose} className="cursor-pointer">Cancel</Button>
+          <Button variant="primary" onClick={handleSubmit} className="cursor-pointer">Submit</Button>
         </div>
       </div>
     </Modal>

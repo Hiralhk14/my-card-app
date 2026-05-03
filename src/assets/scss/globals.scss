@@ -14,103 +14,110 @@
     background-color: var(--background);
     color: var(--foreground);
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
-  .bg-primary {
-    background-color: #1b3a6b;
-  }
+  .bg-primary { background-color: #1b3a6b; }
+  .bg-primary-dark { background-color: #0f2447; }
+  .bg-secondary { background-color: #3b82f6; }
+  .bg-secondary-light { background-color: #dbeafe; }
+  .bg-sidebar { background-color: #1b3a6b; }
+  .bg-card-dark { background-color: #1b3a6b; }
+  .bg-card-disabled { background-color: #6b8bb5; }
+  .bg-action-gpay { background-color: #7c3aed; }
+  .bg-background { background-color: #f0f4f8; }
+  .border-background { border-color: #6b8bb5; }
+  .bg-danger { background-color: #ef4444; }
+  .bg-success { background-color: #22c55e; }
+  .text-success { color: #22c55e; }
+  .text-danger { color: #ef4444; }
+  .text-foreground { color: #171717; }
+  .bg-accent { background-color: #12b5ea; }
+  .border-accent { border-color: #12b5ea; }
+  .text-accent { color: #12b5ea; }
+  .text-primary { color: #1b3a6b; }
+  .text-secondary { color: #3b82f6; }
+  .border-secondary { border-color: #3b82f6; }
+  .bg-footer { background-color: #7FA6B8; }
 
-  .bg-primary-dark {
-    background-color: #0f2447;
-  }
+  .rounded-card { border-radius: 8px; }
+  .shadow-card { box-shadow: 0 4px 6px -1px black; }
+  .transition-smooth { transition: all 0.3s ease; }
+}
 
-  .bg-secondary {
-    background-color: #3b82f6;
+// media queries
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
   }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 50;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .card-carousel {
+    flex-direction: column;
+  }
+  
+  .btn-responsive {
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
 
-  .bg-secondary-light {
-    background-color: #dbeafe;
+@media (min-width: 641px) and (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
+  
+  .sidebar {
+    width: 240px;
+  }
+  
+  .main-content {
+    margin-left: 240px;
+  }
+}
 
-  .bg-sidebar {
-    background-color: #1b3a6b;
+@media (min-width: 1025px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
-  .bg-card-dark {
-    background-color: #1b3a6b;
+  
+  .sidebar {
+    width: 280px;
   }
-  .bg-card-locked {
-    background-color: #6b8bb5;
+  
+  .main-content {
+    margin-left: 280px;
   }
-  .bg-card-disabled {
-    background-color: #6b8bb5;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .bg-action-primary {
-    background-color: #0f2447;
-  }
-  .bg-action-default {
-    background-color: #0f2447;
-  }
-  .bg-action-gpay {
-    background-color: #7c3aed;
-  }
-
-  .bg-background {
-    background-color: #f0f4f8;
-  }
-
-  .border-background {
-    border-color: #f0f4f8;
-  }
-
-  .bg-danger {
-    background-color: #ef4444;
-  }
-
-  .bg-success {
-    background-color: #22c55e;
-  }
-
-  .text-success {
-    color: #22c55e;
-  }
-
-  .text-danger {
-    color: #ef4444;
-  }
-  .text-foreground {
-    color: #171717;
-  }
-
-  .bg-accent {
-    background-color: #12b5ea;
-  }
-  .border-accent {
-    border-color: #12b5ea;
-  }
-
-  .text-accent {
-    color: #12b5ea;
-  }
-
-  .text-primary {
-    color: #1b3a6b;
-  }
-
-  .text-secondary {
-    color: #3b82f6;
-  }
-
-  .border-secondary {
-    border-color: #3b82f6;
-  }
-
-  .bg-footer {
-    background-color: #7FA6B8;
-  }
-
 }

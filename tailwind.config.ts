@@ -12,7 +12,6 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: "#1B3A6B",
-          light: '#2563EB',
           dark: '#0F2447',
         },
         secondary: {
@@ -22,9 +21,7 @@ const config: Config = {
         success: '#22C55E',
         danger: '#EF4444',
         background: '#F0F4F8',
-      },
-      accent: {
-        DEFAULT: "#12B5EA",
+        accent: "#12B5EA",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -33,11 +30,18 @@ const config: Config = {
         xs: ['9px', '12px'],
         sm: ['10px', '14px'],
         base: ['12px', '18px'],
-        md: ['14px', '20px'],
         lg: ['16px', '24px'],
         xl: ['18px', '26px'],
-        '2xl': ['20px', '30px'],
-        '3xl': ['24px', '36px'],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+      },
+      borderRadius: {
+        'card': '12px',
+      },
+      boxShadow: {
+        'card': '0 4px 6px -1px black',
       },
     },
   },

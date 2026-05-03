@@ -5,7 +5,7 @@ import { TRANSACTIONS } from "@/shared/data/transcations";
 
 const TransactionsList = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white rounded-card overflow-hidden">
       <div className="bg-background flex items-center justify-between p-4">
         <div className="flex items-center gap-2 text-accent text-sm">
           <ArrowLeftRight size={16} />
@@ -20,7 +20,7 @@ const TransactionsList = () => {
         {TRANSACTIONS?.map((transaction) => (
           <div
             key={transaction?.id}
-            className="flex items-start gap-3 px-4 py-3 border-b border-accent"
+            className="flex items-start gap-3 mx-2 px-4 py-3 border-b border-accent"
           >
             <div className="w-10 h-10 rounded-full bg-secondary-light flex items-center justify-center">
               {transaction?.type === "debit" ? (
