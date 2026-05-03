@@ -37,31 +37,36 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 w-full overflow-hidden">
       <div className="flex justify-center">
         <button
           type="button"
           className="flex justify-center items-center bg-secondary-light text-sm"
           onClick={() => {
-              dispatch(toggleShowCardNumber(cardType));
-              toast.success(showNumber ? "Card number hidden" : "Card number shown");
-            }}
+            dispatch(toggleShowCardNumber(cardType));
+            toast.success(showNumber ? "Card number hidden" : "Card number shown");
+          }}
         >
-          {showNumber ? <EyeOff size={18} /> : <Eye size={18} />}
-          {showNumber ? "Hide Card Number" : "Show Card Number"}
+          {showNumber ? <EyeOff size={16} /> : <Eye size={16} />}
+          <span className="ml-2 hidden sm:inline">
+            {showNumber ? "Hide Card Number" : "Show Card Number"}
+          </span>
+          <span className="sm:hidden">
+            {showNumber ? "Hide" : "Show"}
+          </span>
         </button>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-4">
-        <div className="flex-1 relative overflow-hidden">
-          <div 
+      <div className="flex flex-col lg:flex-row gap-1 w-full min-w-0">
+        <div className="w-80 sm:w-96 relative overflow-hidden min-w-0">
+          <div
             className="flex transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {cards?.map((currentCard, cardIndex) => (
-              <div 
+              <div
                 key={currentCard?.id}
-                className="w-full flex-shrink-0"
+                className="w-full flex-shrink-0 min-w-0"
               >
                 <CardView
                   card={currentCard}
@@ -72,7 +77,7 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
           </div>
         </div>
 
-        <div className="w-full lg:w-48">
+        <div className="w-full lg:w-40 min-w-0 flex-shrink-0">
           <CardActions
             card={card}
             isLocked={card?.isLocked}
@@ -100,19 +105,18 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ cards, cardType }) => {
         </div>
       </div>
 
-      {cards.length > 1 && (
+      {cards?.length > 1 && (
         <div className="flex justify-center gap-1.5 mt-4">
-          {cards.map((_, dotIndex) => (
+          {cards?.map((_, sliderIndex) => (
             <button
-              key={dotIndex}
+              key={sliderIndex}
               type="button"
-              onClick={() => handleSlideChange(dotIndex)}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ease-in-out ${
-                index === dotIndex
-                  ? "bg-accent w-6"
+              onClick={() => handleSlideChange(sliderIndex)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ease-in-out ${index === sliderIndex
+                  ? "bg-primary w-6"
                   : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to card ${dotIndex + 1}`}
+                }`}
+              aria-label={`Go to card ${sliderIndex + 1}`}
             />
           ))}
         </div>

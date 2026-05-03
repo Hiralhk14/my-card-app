@@ -51,8 +51,8 @@ const CardsPage: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-100 mt-4" />
-          <div className="flex flex-col lg:flex-row gap-6 px-5 py-6">
-            <div className="w-full lg:w-80 shrink-0">
+          <div className="flex flex-col lg:flex-row gap-6 px-5 py-6 overflow-hidden">
+            <div className="w-full lg:w-80 shrink-0 min-w-0">
               <div className="bg-background p-4 mb-4 rounded-card">
                 <div className="flex items-center gap-2 text-accent text-sm">
                   <LayoutGrid size={16} />
@@ -63,7 +63,7 @@ const CardsPage: React.FC = () => {
               <TransactionsList />
             </div>
 
-            <div className="flex-1 flex flex-col gap-8">
+            <div className="flex-1 flex flex-col gap-8 min-w-0 overflow-hidden">
               <section>
                 <h2 className="text-accent text-lg font-bold mb-4 underline">Credit Cards</h2>
                 <CardCarousel

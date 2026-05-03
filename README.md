@@ -21,8 +21,10 @@ npm run dev
 - Add Credit / Debit cards with validation
 - Lock, Archive, Set Default, Add to GPay actions
 - Show/Hide card number
+- Card carousel with slider navigation
 - Toast notifications for all actions
 - LocalStorage persistence
+- Responsive design
 
 ## Project Structure
 ```
@@ -51,16 +53,18 @@ src/
 
 ## Key Components
 - **AddCardModal**: Card creation form
-- **CardCarousel**: Card display carousel
+- **CardCarousel**: Interactive card carousel for managing cards
 - **CardActions**: Lock/archive/default/GPay actions
 - **CardView**: Visual card representation
 
 ## Styling
-- Custom SCSS with Reponsive design
+- Custom SCSS with responsive design
 - Tailwind utilities with custom spacing
-- Responsive breakpoints (640px, 1024px, 1025px)
+- Responsive breakpoints (640px, 1024px, 1280px+)
+- Banking-style card design
 
 ## Development Notes
 - Redux for state management
 - Toast notifications for user feedback
 - LocalStorage for data persistence
+- TypeScript for type safety

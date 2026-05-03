@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
     <aside className="sidebar h-screen bg-sidebar flex flex-col px-8 py-10 font-sans">
       <div className="mb-14">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-14 h-14 bg-secondary flex items-center justify-center">
+          <div className="w-12 h-12 bg-secondary flex items-center justify-center">
             <span className="text-white font-bold text-lg">GD</span>
           </div>
 
