@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Card Management App
+  Next.js + TypeScript + Tailwind CSS card management application.
 
-## Getting Started
 
-First, run the development server:
+## Tech Stack
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (global theme config)
+- **State**: Redux Toolkit + LocalStorage
+- **Toast**: react-hot-toast
+- **Icons**: lucide-react
 
+
+## Setup
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- Add Credit / Debit cards with validation
+- Lock, Archive, Set Default, Add to GPay actions
+- Show/Hide card number
+- Toast notifications for all actions
+- LocalStorage persistence
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+```
+src/
+├── app/                # Next.js pages
+│   ├── cards/          # Cards page
+│   ├── providers/      # Redux providers
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Home page
+├── assets/
+│   └── scss/
+│       └── globals.scss # Global styles
+├── shared/
+│   ├── components/     # UI components
+│   │   ├── cards/      # Card components
+│   │   ├── footer/     # Footer
+│   │   ├── headers/    # Header
+│   │   ├── layout/     # Layout
+│   │   └── sidebar/    # Sidebar
+│   ├── data/           # Static data
+│   ├── store/          # Redux setup
+│   ├── ui/             # Base components
+│   └── utils/          # Helper functions
+└── types/              # TypeScript types
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Components
+- **AddCardModal**: Card creation form
+- **CardCarousel**: Card display carousel
+- **CardActions**: Lock/archive/default/GPay actions
+- **CardView**: Visual card representation
 
-## Learn More
+## Styling
+- Custom SCSS with Reponsive design
+- Tailwind utilities with custom spacing
+- Responsive breakpoints (640px, 1024px, 1025px)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development Notes
+- Redux for state management
+- Toast notifications for user feedback
+- LocalStorage for data persistence
