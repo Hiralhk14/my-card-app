@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -36,38 +36,32 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [showCVV, setShowCVV] = useState(false);
 
-  const handleChange = useCallback(
-    (field: keyof AddCardFormData, value: string | boolean) => {
-      setForm((prev) => ({ ...prev, [field]: value }));
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    },
-    []
-  );
+  const handleChange = (field: keyof AddCardFormData, value: string | boolean) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+    setErrors(prev => ({ ...prev, [field]: undefined }));
+  };
 
   // function to format card number
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatCardNumber(e?.target?.value);
-    handleChange("cardNumber", formatted);
+    handleChange("cardNumber", formatCardNumber(e.target.value));
   };
 
   // function to format valid till date in MM/YYYY format
   const handleValidTillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatValidTill(e?.target?.value);
-    handleChange("validTill", formatted);
+    handleChange("validTill", formatValidTill(e.target.value));
   };
 
   // function to validate form and submit data to redux store
   const handleSubmit = async () => {
     const validationErrors = validateCardForm(form, existingCards);
-    if (Object?.keys(validationErrors)?.length > 0) {
+    if (Object.keys(validationErrors)?.length > 0) {
       setErrors(validationErrors);
-      toast.error("Please fix the errors in the form.");
+      toast.error("Please enter valid details");
       return;
     }
     try {
-      dispatch(
-        addCard({
-          id: generateId(),
+      dispatch(addCard({
+        id: generateId(),
           name: form?.name.trim(),
           bankName: form?.bankName.trim(),
           cardType: form?.cardType as CardType,
@@ -76,8 +70,8 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
           cvv: form?.cvv,
           isDefault: form?.isDefault,
           addToGPay: form?.addToGPay,
-          isLocked: false,
-          isArchived: false,
+        isLocked: false,
+        isArchived: false,
         })
       );
       toast.success("Card added successfully!");
@@ -151,26 +145,26 @@ const AddCardModal: React.FC<AddCardModalProps> = ({ isOpen, onClose }) => {
             onChange={handleValidTillChange}
             error={errors?.validTill}
           />
-          <Input
-            id="cvv"
-            label="CVV:"
-            placeholder="•••"
-            inputMode="numeric"
-            maxLength={4}
+        <Input
+          id="cvv"
+          label="CVV:"
+          placeholder="•••"
+          inputMode="numeric"
+          maxLength={4}
             value={form?.cvv}
             onChange={(e) => handleChange("cvv", e?.target?.value?.replace(/\D/g, "")?.slice(0, 4))}
             error={errors?.cvv}
-            type={showCVV ? "text" : "password"}
-            rightIcon={
-              <button
-                type="button"
+          type={showCVV ? "text" : "password"}
+          rightIcon={
+            <button
+              type="button"
                 onClick={() => setShowCVV((i) => !i)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                {showCVV ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
-            }
-          />
+              className="text-gray-400 hover:text-gray-600"
+            >
+              {showCVV ? <EyeOff size={16} /> : <Eye size={16} />}
+            </button>
+          }
+        />
         </div>
         <Checkbox
           id="set-default"

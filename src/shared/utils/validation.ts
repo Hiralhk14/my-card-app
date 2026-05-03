@@ -6,18 +6,18 @@ export const isValidCardNumber = (cardNumber: string) => {
   if (!/^\d{16}$/.test(cleanNumber)) return false;
 
   let sum = 0;
-  let shouldDouble = false;
+  let double = false;
 
   for (let i = cleanNumber.length - 1; i >= 0; i--) {
-    let digit = parseInt(cleanNumber[i], 10);
-
-    if (shouldDouble) {
+    let digit = parseInt(cleanNumber[i]);
+    
+    if (double) {
       digit *= 2;
       if (digit > 9) digit -= 9;
     }
-
+    
     sum += digit;
-    shouldDouble = !shouldDouble;
+    double = !double;
   }
 
   return sum % 10 === 0;
@@ -26,34 +26,25 @@ export const isValidCardNumber = (cardNumber: string) => {
 // valid till date validation
 export const isValidFutureDate = (validTill: string) => {
   const datePattern = /^(0[1-9]|1[0-2])\/\d{4}$/;
-
-  if (!datePattern.test(validTill)) {
-    return false;
-  }
+  if (!datePattern.test(validTill)) return false;
+  
   const [month, year] = validTill.split("/").map(Number);
   const expiryDate = new Date(year, month - 1);
   
   const today = new Date();
-  const currentDate = new Date(today.getFullYear(), today.getMonth());
+  const currentMonth = new Date(today.getFullYear(), today.getMonth());
 
-  return expiryDate >= currentDate;
+  return expiryDate >= currentMonth;
 };
 
 // form validation function for add card form
-export const validateCardForm = (
-  formData: AddCardFormData,
-  existingCards: Card[]
-) => {
+export const validateCardForm = (formData: AddCardFormData, existingCards: Card[]) => {
   const errors: FormErrors = {};
-  if (!formData.name.trim()) {  
-    errors.name = "Name is required"; // name validation
-  }
-  if (!formData.bankName.trim()) {
-    errors.bankName = "Bank name is required"; // bank name validation
-  }
-  if (!formData.cardType) {
-    errors.cardType = "Card type is required"; // card type validation
-  }
+  
+  if (!formData.name.trim()) errors.name = "Name is required";
+  if (!formData.bankName.trim()) errors.bankName = "Bank name is required";
+  if (!formData.cardType) errors.cardType = "Card type is required";
+  
   if (!formData.cardNumber.trim()) {
     errors.cardNumber = "Card number is required";
   } else if (!isValidCardNumber(formData.cardNumber)) {
@@ -72,9 +63,7 @@ export const validateCardForm = (
   // default card validation
   if (formData.isDefault && formData.cardType) {
     const hasDefaultCard = existingCards.some(
-      (card) =>
-        card.cardType === formData.cardType &&
-        card.isDefault
+      card => card.cardType === formData.cardType && card.isDefault
     );
     if (hasDefaultCard) {
       errors.isDefault = "This card type already has a default card";
@@ -94,16 +83,15 @@ export const formatCardNumber = (value: string): string => {
 // function to format valid till input
 export const formatValidTill = (value: string): string => {
   const cleaned = value.replace(/\D/g, "").slice(0, 6);
-  if (cleaned.length >= 3) {
-    return `${cleaned.slice(0, 2)}/${cleaned.slice(2)}`;
-  }
-  return cleaned;
+  return cleaned.length >= 3 ? `${cleaned.slice(0, 2)}/${cleaned.slice(2)}` : cleaned;
 };
 
+// function to generate unique id for card created
 export const generateId = (): string => {
   return `card_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 };
 
+// function to mask card number except last 4 digits
 export const maskCardNumber = (cardNumber: string): string => {
   const last4 = cardNumber.replace(/\s/g, "").slice(-4);
   return `•••• •••• •••• ${last4}`;
